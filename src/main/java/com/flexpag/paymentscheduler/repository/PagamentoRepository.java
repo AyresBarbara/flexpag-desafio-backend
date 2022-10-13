@@ -5,10 +5,10 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.flexpag.paymentscheduler.model.Agendamento;
+import com.flexpag.paymentscheduler.model.Pagamento;
 
 @Repository
-public interface AgendamentoRespository extends JpaRepository <Agendamento, Long>{
-	public List<Agendamento> findAllById(Long id);
+public interface PagamentoRepository extends JpaRepository <Pagamento, Long>{
+	public List<Pagamento> findAllById(Long id);
 
 }

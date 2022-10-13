@@ -1,9 +1,12 @@
 package com.flexpag.paymentscheduler.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +22,10 @@ public class Pagamento {
 	private Boolean pending;
 	
 	private Boolean paid;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "agendamento_id", referencedColumnName = "id")
+    private Agendamento agendamento;
 
 	public Long getId() {
 		return id;
@@ -43,5 +50,14 @@ public class Pagamento {
 	public void setPaid(Boolean paid) {
 		this.paid = paid;
 	}
+
+	public Agendamento getAgendamento() {
+		return agendamento;
+	}
+
+	public void setAgendamento(Agendamento agendamento) {
+		this.agendamento = agendamento;
+	}
+	
 	
 }

@@ -1,13 +1,15 @@
 package com.flexpag.paymentscheduler.model;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table (name = "agendamento")
@@ -17,9 +19,13 @@ public class Agendamento {
 	@GeneratedValue (strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private String data = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	@JsonFormat(pattern = "yyyy-MM-dd")
+	private LocalDate data;
 	
-	private String hora   = LocalDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+	private LocalDate hora;
+	
+	@OneToOne(mappedBy = "agendamento")
+    private Pagamento pagamento;
 
 	public Long getId() {
 		return id;
@@ -29,23 +35,28 @@ public class Agendamento {
 		this.id = id;
 	}
 
-	public String getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 
-	public String getHora() {
+	public LocalDate getHora() {
 		return hora;
 	}
 
-	public void setHora(String hora) {
+	public void setHora(LocalDate hora) {
 		this.hora = hora;
 	}
 
-	
-	
+	public Pagamento getPagamento() {
+		return pagamento;
+	}
 
+	public void setPagamento(Pagamento pagamento) {
+		this.pagamento = pagamento;
+	}
+	
 }
