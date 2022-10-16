@@ -9,6 +9,6 @@ import com.flexpag.paymentscheduler.model.Agendamento;
 
 @Repository
 public interface AgendamentoRepository extends JpaRepository <Agendamento, Long>{
-	public List<Agendamento> findAllById(Long id);
+	
 
 }
