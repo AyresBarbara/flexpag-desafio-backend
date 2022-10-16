@@ -51,6 +51,7 @@ public class AgendamentoService {
         return this.agendamentoRep.save(agendamento);
     }
 	public void excluirAgendamento(Long id) {
+		
         Agendamento agendamento = this.consultarAgendamento(id);
 
         if(agendamento.getPagamento() == Status.PAID) throw new BadRequestException("Pagamento executado com sucesso, não pode ser deletado!");
@@ -59,6 +60,7 @@ public class AgendamentoService {
 
     }
 	public Status consultarPagamento(Long id) {
+		
         Agendamento agendamento = this.consultarAgendamento(id);
         return agendamento.getPagamento();
     }
